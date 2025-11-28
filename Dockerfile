@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 # --- System deps required by Playwright browsers ---
 RUN apt-get update && apt-get install -y \
@@ -21,6 +21,9 @@ COPY . .
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONIOENCODING=utf-8
+
+# --- Environment variables (set via docker run -e or HuggingFace Spaces secrets) ---
+# Required: EMAIL, SECRET, AIPIPE_API_KEY, GOOGLE_API_KEY
 
 # --- Install project dependencies using uv ---
 RUN uv sync --frozen
