@@ -1,0 +1,23 @@
+[project]
+name = "tdsproject2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "playwright>=1.56.0",
+    "beautifulsoup4>=4.14.2",
+    "langgraph>=1.0.3",
+    "langchain>=0.2.0",
+    "langchain-community>=0.2.0",
+    "langchain-openai>=0.1.0",
+    "langchain-google-genai>=1.0.0",
+    "google-genai>=0.17.0",
+    "jsonpatch>=1.33",
+    "python-dotenv>=1.2.1",
+    "pandas>=2.3.3",
+    "fastapi>=0.121.3",
+    "uvicorn>=0.38.0",
+    "requests>=2.32.5",
+    "numpy>=2.3.5",
+]
