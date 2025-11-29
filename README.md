@@ -56,7 +56,7 @@ The project uses a **dual AI architecture** with automatic failover:
 │                                                           │
 │  ┌──────────────────┐         ┌────────────────────┐   │
 │  │  PRIMARY LLM     │ FALLBACK│   BACKUP LLM       │   │
-│  │  Aipipe/GPT-4o  │────────>│   Google Gemini    │   │
+│  │  Aipipe/GPT-5-nano  │────────>│   Google Gemini    │   │
 │  │  (Reasoning)     │         │   (Rate limit)     │   │
 │  └────────┬─────────┘         └────────────────────┘   │
 │           │                                              │
@@ -80,14 +80,14 @@ The project uses a **dual AI architecture** with automatic failover:
 
 1. **FastAPI Server** (`main.py`): HTTP endpoint for quiz submissions
 2. **LangGraph Agent** (`agent.py`): State machine with dual AI + automatic fallback
-3. **Primary LLM**: Aipipe/OpenRouter (GPT-4o-mini) - cheap, fast reasoning
+3. **Primary LLM**: Aipipe/OpenRouter (GPT-5-nano) - cheap, fast reasoning
 4. **Fallback LLM**: Google Gemini 2.0 Flash - automatic failover on rate limits
 5. **Multimodal Tools**: Gemini-powered audio, image, PDF, video analysis
 6. **Execution Tools**: Python code runner, web scraper, file handlers
 
 ## ✨ Features
 
-- ✅ **Dual AI architecture**: GPT-4o-mini (primary) + Gemini (fallback + multimodal)
+- ✅ **Dual AI architecture**: GPT-5-nano (primary) + Gemini (fallback + multimodal)
 - ✅ **Automatic failover**: Seamlessly switches from Aipipe → Gemini on rate limits
 - ✅ **Multimodal analysis**: Audio transcription, image/video/PDF analysis
 - ✅ **Autonomous multi-step solving**: Chains together unlimited quiz pages
@@ -456,7 +456,7 @@ docker run -p 7860:7860 \
 
 ## ⚡ Rate Limiting & Fallback
 
-### Primary: Aipipe (GPT-4o-mini)
+### Primary: Aipipe (GPT-5-nano)
 - **Limit**: 9 requests per minute
 - **Mechanism**: `InMemoryRateLimiter`
 - **On failure**: Switches to Gemini
@@ -492,7 +492,7 @@ Aipipe request
 ## 📝 Key Design Decisions
 
 1. **Dual AI**: Aipipe (cheap) + Gemini (fallback + multimodal)
-2. **GPT-4o-mini over Claude**: 20x cheaper, prevents token exhaustion
+2. **GPT-5-nano over Claude**: 20x cheaper, prevents token exhaustion
 3. **REST API for multimodal**: Avoids SDK dependency conflicts
 4. **Base64 inline data**: Faster than file upload API
 5. **Time-optimized fallback**: 2s max wait (vs 35s before)
