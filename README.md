@@ -8,7 +8,7 @@ title: AI Quiz Solver - Multi-Agent System
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.121.3+-green.svg)](https://fastapi.tiangolo.com/)
 
-An intelligent, autonomous agent built with LangGraph and LangChain that solves complex data science quizzes involving web scraping, multimodal analysis, data processing, machine learning, and visualization. The system uses a **dual AI architecture** with Aipipe/OpenRouter (GPT-4o-mini) for reasoning and Google Gemini for multimodal tasks.
+An intelligent, autonomous agent built with LangGraph and LangChain that solves complex data science quizzes involving web scraping, multimodal analysis, data processing, machine learning, and visualization. The system uses a **dual AI architecture** with Aipipe/OpenRouter (gpt-5-nano) for reasoning and Google Gemini for multimodal tasks.
 
 ## 📋 Table of Contents
 
@@ -100,7 +100,7 @@ The project uses a **dual AI architecture** with automatic failover:
 
 ## 🤖 AI Models & Routing
 
-### Primary: Aipipe/OpenRouter - GPT-4o-mini
+### Primary: Aipipe/OpenRouter - GPT-5-nano
 - **Purpose**: Main reasoning engine, code generation, text analysis
 - **Cost**: ~$0.15 per 1M tokens (20x cheaper than Claude)
 - **Rate Limit**: 9 requests per minute
@@ -209,8 +209,8 @@ LLM-Analysis-TDS-Project-2/
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/saivijayragav/LLM-Analysis-TDS-Project-2.git
-cd LLM-Analysis-TDS-Project-2
+git clone https://github.com/Atulmishra22/llm-quiz-solver.git
+cd llm-quiz-solver
 ```
 
 ### Step 2: Install Dependencies
@@ -257,7 +257,7 @@ GOOGLE_API_KEY=your_gemini_key_here
 **Aipipe/OpenRouter:**
 1. Sign up at [aipipe.org](https://aipipe.org)
 2. Get your API key from dashboard
-3. Add credits (GPT-4o-mini is very cheap)
+3. Add credits (GPT-5-nano is very cheap)
 
 **Google Gemini:**
 1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)

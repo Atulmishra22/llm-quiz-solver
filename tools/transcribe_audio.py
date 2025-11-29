@@ -54,8 +54,23 @@ def transcribe_audio(audio_url: str) -> str:
             with open(tmp_path, 'rb') as f:
                 audio_data = base64.b64encode(f.read()).decode('utf-8')
             
-            # Determine MIME type
-            mime_type = 'audio/mpeg' if suffix in ['.mp3', '.MP3'] else 'audio/wav'
+            # Determine MIME type based on file extension
+            mime_map = {
+                '.mp3': 'audio/mpeg',
+                '.MP3': 'audio/mpeg',
+                '.wav': 'audio/wav',
+                '.WAV': 'audio/wav',
+                '.opus': 'audio/ogg',
+                '.OPUS': 'audio/ogg',
+                '.ogg': 'audio/ogg',
+                '.OGG': 'audio/ogg',
+                '.m4a': 'audio/mp4',
+                '.M4A': 'audio/mp4',
+                '.flac': 'audio/flac',
+                '.FLAC': 'audio/flac'
+            }
+            mime_type = mime_map.get(suffix, 'audio/mpeg')
+            print(f"📝 Using MIME type: {mime_type} for {suffix}")
             
             # Call Gemini API with inline data
             print(f"🔄 Generating transcription with Gemini...")
@@ -69,8 +84,16 @@ def transcribe_audio(audio_url: str) -> str:
                             {'inlineData': {'mimeType': mime_type, 'data': audio_data}}
                         ]
                     }]
-                }
+                },
+                timeout=60
             )
+            
+            # Better error handling for API response
+            if api_response.status_code != 200:
+                error_detail = api_response.text[:500]
+                print(f"❌ Gemini API error {api_response.status_code}: {error_detail}")
+                raise Exception(f"Gemini API returned {api_response.status_code}: {error_detail}")
+            
             api_response.raise_for_status()
             
             transcription = api_response.json()['candidates'][0]['content']['parts'][0]['text'].strip()
